@@ -1,0 +1,87 @@
+
+ This program multiplies 2 positive integers.
+ Both multiplicand and multiplier should be smaller than 255
+
+multiplicand:170 
+multiplier:85
+
+binary expression
+multiplicand:
+  1  0  1  0  1  0  1  0
+multiplier:
+  0  1  0  1  0  1  0  1
+work area:
+  0  0  0  0  0  0  0  0
+  1  0  1  0  1  0  1  0
+ans area:
+  0  0  0  0  0  0  0  0
+  0  0  0  0  0  0  0  0
+
+begin calculation 
+
+--------------------
+cf: 1
+ans area:
+  0  0  0  0  0  0  0  0
+  1  0  1  0  1  0  1  0
+
+work area:
+  0  0  0  0  0  0  0  1
+  0  1  0  1  0  1  0  0
+
+cf: 0
+ans area:
+  0  0  0  0  0  0  0  0
+  1  0  1  0  1  0  1  0
+
+work area:
+  0  0  0  0  0  0  1  0
+  1  0  1  0  1  0  0  0
+
+cf: 1
+ans area:
+  0  0  0  0  0  0  1  1
+  0  1  0  1  0  0  1  0
+
+work area:
+  0  0  0  0  0  1  0  1
+  0  1  0  1  0  0  0  0
+
+cf: 0
+ans area:
+  0  0  0  0  0  0  1  1
+  0  1  0  1  0  0  1  0
+
+work area:
+  0  0  0  0  1  0  1  0
+  1  0  1  0  0  0  0  0
+
+cf: 1
+ans area:
+  0  0  0  0  1  1  0  1
+  1  1  1  1  0  0  1  0
+
+work area:
+  0  0  0  1  0  1  0  1
+  0  1  0  0  0  0  0  0
+
+cf: 0
+ans area:
+  0  0  0  0  1  1  0  1
+  1  1  1  1  0  0  1  0
+
+work area:
+  0  0  1  0  1  0  1  0
+  1  0  0  0  0  0  0  0
+
+cf: 1
+ans area:
+  0  0  1  1  1  0  0  0
+  0  1  1  1  0  0  1  0
+
+work area:
+  0  1  0  1  0  1  0  1
+  0  0  0  0  0  0  0  0
+
+--------------------
+FINAL ANSWER: 170 x 85 = 14450
