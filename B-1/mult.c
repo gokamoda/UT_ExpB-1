@@ -110,6 +110,10 @@ int main()
     print_array_(bi_work0);
     printf("\n");
 
+    printf("bi_multiplier area:\n");
+    print_array_(bi_multiplier);
+    printf("\n");
+
   }
   printf("--------------------\n");
 
@@ -168,6 +172,7 @@ int srl_(int *array)
   {
     array[i + 1] = array[i];
   }
+  array[0] = 0;
   return cf;
 }
 
