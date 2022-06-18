@@ -5,7 +5,7 @@
 // 2進数化
 int binary_byte(int *array, int n);
 
-// 配列の動的メモリ確保
+// 配列のメモリの動的確保
 int *func_mallocation_(const int N);
 
 // 配列の表示
@@ -75,23 +75,31 @@ int main()
   print_array_(bi_ans1);
   print_array_(bi_ans0);
 
+  // 前処理終了，計算開始
   printf("\nbegin calculation \n\n");
   printf("--------------------\n");
 
+  // carry flag
   int cf;
+
   while (decimal_byte_(bi_multiplier) != 0)
   {
+    // 乗数の最下位ビットをcfに格納
     cf = srl_(bi_multiplier);
     printf("cf: %d\n", cf);
+
+    // cfが1の時のみ掛算（足し算）を実行
     if(cf == 1){
       cf = 0;
       cf = add_byte_(bi_ans0, bi_work0, cf);
       cf = add_byte_(bi_ans1, bi_work1, cf);
     }
 
+    // 次の位の計算で足しこむ数を準備
     cf = sla_(bi_work0);
     cf = rla_(bi_work1, cf);
 
+    // debugのための表示
     printf("ans area:\n");
     print_array_(bi_ans1);
     print_array_(bi_ans0);
@@ -105,7 +113,10 @@ int main()
   }
   printf("--------------------\n");
 
+  // 積の表示
   printf("FINAL ANSWER: %d x %d = %d\n", multiplicand, multiplier, decimal_byte_(bi_ans1)*256 + decimal_byte_(bi_ans0));
+
+  //メモリの開放
   free(bi_multiplicand);
   free(bi_multiplier);
   free(bi_ans0);
@@ -115,6 +126,7 @@ int main()
   return 0;
 }
 
+// 2進数化
 int binary_byte(int *array, int n)
 {
   int remainder;
@@ -126,6 +138,7 @@ int binary_byte(int *array, int n)
   }
 }
 
+// 配列のメモリの動的確保
 int *func_mallocation_(const int N)
 {
   int *data = (int *)malloc(N * sizeof(int));
@@ -137,6 +150,7 @@ int *func_mallocation_(const int N)
   return data;
 }
 
+// 配列の表示
 void print_array_(const int *const array)
 {
   for (int i = 0; i < 8; ++i)
@@ -146,6 +160,7 @@ void print_array_(const int *const array)
   printf("\n");
 }
 
+// 右シフト
 int srl_(int *array)
 {
   int cf = array[7];
@@ -156,6 +171,7 @@ int srl_(int *array)
   return cf;
 }
 
+// 左シフ(0in, cfout)
 int sla_(int *array){
   int cf = array[0];
   for(int i=0; i<=6; i++){
@@ -175,7 +191,7 @@ int rla_(int *array, int cf){
   return cf;
 }
 
-
+// 10進数化
 int decimal_byte_(int *array)
 {
   int decimal = 0;
@@ -186,6 +202,7 @@ int decimal_byte_(int *array)
   return decimal;
 }
 
+// 1バイト同士の足し算（cf含める）
 int add_byte_(int* ans, int* array, int cf){
   int sum;
   for(int i=7; i>=0; i--){
